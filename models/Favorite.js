@@ -2,10 +2,13 @@ const mongoose = require('mongoose');
 
 const FavoriteSchema = new mongoose.Schema({
   createdBy: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
   },
-  post: mongoose.Schema.Types.ObjectId,
-  ref: 'Post',
+  post: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Post',
+  },
 });
 
 module.exports = mongoose.model('Favorite', FavoriteSchema);
