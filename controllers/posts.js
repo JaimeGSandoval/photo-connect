@@ -11,6 +11,16 @@ module.exports = {
       console.log(err);
     }
   },
+
+  getProfileForm: (req, res) => {
+    res.render('profileForm.ejs');
+  },
+
+  createProfile: (req, res) => {
+    console.log(req.body);
+    res.send('yoooo');
+  },
+
   getFeed: async (req, res) => {
     try {
       const posts = await Post.find().sort({ createdAt: 'desc' }).lean();
@@ -19,6 +29,7 @@ module.exports = {
       console.log(err);
     }
   },
+
   getPost: async (req, res) => {
     try {
       const post = await Post.findById(req.params.id);
@@ -30,6 +41,7 @@ module.exports = {
       console.log(err);
     }
   },
+
   createPost: async (req, res) => {
     try {
       // Upload image to cloudinary
@@ -49,6 +61,7 @@ module.exports = {
       console.log(err);
     }
   },
+
   likePost: async (req, res) => {
     try {
       await Post.findOneAndUpdate(
@@ -63,6 +76,7 @@ module.exports = {
       console.log(err);
     }
   },
+
   deletePost: async (req, res) => {
     try {
       // Find post by id
