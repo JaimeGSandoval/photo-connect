@@ -11,6 +11,17 @@ module.exports = {
       console.log(err);
     }
   },
+  getUserProfile: async (req, res) => {
+    try {
+      const profile = await Profile.find({ user: req.user.id });
+      console.log(profile);
+      res.redirect('/');
+
+      // res.render('profile.ejs', { posts: posts, user: req.user });
+    } catch (err) {
+      console.log(err);
+    }
+  },
   getProfileForm: (req, res) => {
     res.render('profileForm.ejs');
   },
