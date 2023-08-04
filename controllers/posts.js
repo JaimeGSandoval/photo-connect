@@ -16,11 +16,6 @@ module.exports = {
     res.render('profileForm.ejs');
   },
 
-  createProfile: (req, res) => {
-    console.log(req.body);
-    res.send('yoooo');
-  },
-
   getFeed: async (req, res) => {
     try {
       const posts = await Post.find().sort({ createdAt: 'desc' }).lean();

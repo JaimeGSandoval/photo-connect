@@ -6,6 +6,6 @@ const { ensureAuth, ensureGuest } = require('../middleware/auth');
 
 router.get('/', ensureAuth, profileController.getProfile);
 router.get('/form', ensureAuth, profileController.getProfileForm);
-// router.post('/create', upload.single('file'), profileController.createProfile);
+router.post('/create', ensureAuth, upload.single('uploaded_file'), profileController.createProfile);
 
 module.exports = router;
