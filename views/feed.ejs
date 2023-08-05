@@ -12,6 +12,8 @@
             <a href="/post/<%= posts[i]._id%>">
               <img class="img-fluid" src="<%= posts[i].image%>">
             </a>
+            <a href="/profile/<%= posts[i].userName%>"><%= posts[i].userName %></a>
+
           </li>
         <% } %>
         </ul>
