@@ -1,9 +1,10 @@
 const Post = require('../models/Post');
 const Profile = require('../models/Profile');
+const User = require('../models/User');
 const cloudinary = require('../middleware/cloudinary');
 
 module.exports = {
-  getProfile: async (req, res) => {
+  getProfileById: async (req, res) => {
     try {
       const posts = await Post.find({ user: req.user.id });
       res.render('profile.ejs', { posts: posts, user: req.user });
@@ -11,13 +12,11 @@ module.exports = {
       console.log(err);
     }
   },
-  getUserProfile: async (req, res) => {
+  getProfileByUsername: async (req, res) => {
     try {
-      const profile = await Profile.find({ user: req.user.id });
-      console.log(profile);
-      res.redirect('/');
-
-      // res.render('profile.ejs', { posts: posts, user: req.user });
+      const profile = await User.find({ userName: req.params.userName });
+      const posts = await Post.find({ userName: req.params.userName });
+      res.render('profile.ejs', { posts: posts, user: profile[0] });
     } catch (err) {
       console.log(err);
     }
